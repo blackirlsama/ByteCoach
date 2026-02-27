@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: InfiniteChat-Agent
+
+
+server:
+  port: 10010
+  servlet:
+    context-path: /api
+
+
+logging:
+  level:
+    dev.langchain4j.mcp: ERROR
+
+
+
+langchain4j:
+  community:
+    dashscope:
+      chat-model:
+        model-name: qwen-max
+        api-key: sk-e784271659ed44feb10e4dd7cb69762b
