@@ -2,22 +2,22 @@ spring:
   application:
     name: InfiniteChat-Agent
 
-
 server:
   port: 10010
   servlet:
     context-path: /api
 
-
 logging:
   level:
     dev.langchain4j.mcp: ERROR
 
-
+# 根层级的大模型配置（关键修复：从dashscope里提出来）
+bigmodel:
+  api-key: 12cc950622344290bebffb9de8eff3d2.ttihjvInDu60Qm7P
 
 langchain4j:
   community:
     dashscope:
       chat-model:
         model-name: qwen-max
-        api-key: xxx
+        api-key: sk-e784271659ed44feb10e4dd7cb69762b
