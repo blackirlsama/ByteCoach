@@ -4,11 +4,12 @@ import dev.langchain4j.community.store.embedding.redis.spring.RedisEmbeddingStor
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
 @SpringBootApplication(exclude = {RedisEmbeddingStoreAutoConfiguration.class})
-public class InfinteChatAgentApplication {
+public class InfiniteChatAgentApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(InfinteChatAgentApplication.class, args);
+        SpringApplication.run(InfiniteChatAgentApplication.class, args);
     }
 
 }

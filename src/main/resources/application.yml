@@ -8,7 +8,17 @@ spring:
       password: e65K4t8w2
       ttl: 3600
       timeout: 30000
-
+  mail:
+    host: smtp.qq.com  # 以QQ邮箱为例
+    port: 587
+    username: 79924313 # 你的发件账号
+    password: scnvxodpfnqwbfjb # 你的SMTP授权码
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 server:
   port: 10010
   servlet:
@@ -18,9 +28,14 @@ logging:
   level:
     dev.langchain4j.mcp: ERROR
 
-# 根层级的大模型配置（关键修复：从dashscope里提出来）
-bigmodel:
-  api-key: 12cc950622344290bebffb9de8eff3d2.ttihjvInDu60Qm7P
+pgvector:
+  database: dp
+  host: 127.0.0.1
+  port : 54328
+  user: root
+  password: e65K4t7z1
+  table: dp_embedding
+
 
 langchain4j:
   community:
@@ -28,3 +43,14 @@ langchain4j:
       chat-model:
         model-name: qwen-max
         api-key: sk-e784271659ed44feb10e4dd7cb69762b
+      embedding-model:
+        model-name: text-embedding-v4
+        api-key: sk-e784271659ed44feb10e4dd7cb69762b
+
+
+bigmodel:
+  api-key: 12cc950622344290bebffb9de8eff3d2.ttihjvInDu60Qm7P
+
+
+rag:
+  docs-path: C:\Users\79924\Desktop\tianmu\ByteCoach\src\main\resources\docs
