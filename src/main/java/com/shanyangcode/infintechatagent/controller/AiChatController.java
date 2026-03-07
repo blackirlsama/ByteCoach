@@ -1,8 +1,10 @@
 package com.shanyangcode.infintechatagent.controller;
 
 
+import com.shanyangcode.infintechatagent.Monitor.MonitorContext;
+import com.shanyangcode.infintechatagent.Monitor.MonitorContextHolder;
 import com.shanyangcode.infintechatagent.ai.AiChat;
-import com.shanyangcode.infintechatagent.model.ChatRequest;
+import com.shanyangcode.infintechatagent.model.dto.ChatRequest;
 import com.shanyangcode.infintechatagent.model.dto.KnowledgeRequest;
 import dev.langchain4j.data.document.Document;
 import dev.langchain4j.data.document.Metadata;
@@ -44,14 +46,36 @@ public class AiChatController {
 
     @PostMapping("/chat")
     public String chat(@RequestBody ChatRequest chatRequest) {
-        return aiChat.chat(chatRequest.getSessionId(), chatRequest.getPrompt());
+        MonitorContextHolder.setContext(MonitorContext.builder().userId(chatRequest.getUserId()).sessionId(chatRequest.getSessionId()).build());
+        String chat = aiChat.chat(chatRequest.getSessionId(), chatRequest.getPrompt());
+        MonitorContextHolder.clearContext();
+        return chat;
     }
+
+
+//    @PostMapping("/streamChat")
+//    public Flux<String> streamChat(@RequestBody ChatRequest chatRequest) {
+//        return aiChat.streamChat(chatRequest.getSessionId(), chatRequest.getPrompt());
+//    }
+
+
 
 
     @PostMapping("/streamChat")
     public Flux<String> streamChat(@RequestBody ChatRequest chatRequest) {
-        return aiChat.streamChat(chatRequest.getSessionId(), chatRequest.getPrompt());
+        MonitorContext context = MonitorContext.builder()
+                .userId(chatRequest.getUserId())
+                .sessionId(chatRequest.getSessionId())
+                .build();
+
+        return Flux.defer(() -> {
+            MonitorContextHolder.setContext(context);
+            return aiChat.streamChat(chatRequest.getSessionId(), chatRequest.getPrompt())
+                    .doFinally(signal -> MonitorContextHolder.clearContext());
+        });
     }
+
+
 
     @PostMapping("/insert")
     public String insertKnowledge(@RequestBody KnowledgeRequest knowledgeRequest) {

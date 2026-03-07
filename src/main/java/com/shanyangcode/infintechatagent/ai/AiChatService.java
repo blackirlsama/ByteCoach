@@ -45,6 +45,7 @@ public class AiChatService {
                 .chatModel(chatModel)
                 .streamingChatModel(streamingChatModel)
                 .contentRetriever(contentRetriever)
+
                 .chatMemoryProvider(memoryId -> MessageWindowChatMemory
                         .builder()
                         .id(memoryId)

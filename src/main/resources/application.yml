@@ -11,7 +11,7 @@ spring:
   mail:
     host: smtp.qq.com  # 以QQ邮箱为例
     port: 587
-    username: 79924313 # 你的发件账号
+    username: 799243133 # 你的发件账号
     password: scnvxodpfnqwbfjb # 你的SMTP授权码
     properties:
       mail:
@@ -57,3 +57,12 @@ bigmodel:
 
 rag:
   docs-path: C:\Users\Administrator\IdeaProjects\InfiniteChat-Agent\src\main\resources\docs
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    health:
+      show-details: always

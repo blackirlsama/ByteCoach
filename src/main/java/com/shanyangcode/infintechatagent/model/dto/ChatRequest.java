@@ -1,4 +1,4 @@
-package com.shanyangcode.infintechatagent.model;
+package com.shanyangcode.infintechatagent.model.dto;
 
 import lombok.Data;
 
