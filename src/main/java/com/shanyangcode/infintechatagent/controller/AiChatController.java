@@ -2,18 +2,18 @@ package com.shanyangcode.infintechatagent.controller;
 
 
 import com.shanyangcode.infintechatagent.ai.AiChat;
+import com.shanyangcode.infintechatagent.model.ChatRequest;
 import com.shanyangcode.infintechatagent.model.dto.KnowledgeRequest;
 import dev.langchain4j.data.document.Document;
 import dev.langchain4j.data.document.Metadata;
 import dev.langchain4j.store.embedding.EmbeddingStoreIngestor;
 import jakarta.annotation.Resource;
-import lombok.Synchronized;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Flux;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -37,12 +37,21 @@ public class AiChatController {
 
     private final  String  TARGET_FILENAME = "InfiniteChat.md";
 
-    @GetMapping("/chat")
-    public String chat(String sessionId, String prompt) {
-        return aiChat.chat(sessionId, prompt);
+//    @GetMapping("/chat")
+//    public String chat(String sessionId, String prompt) {
+//        return aiChat.chat(sessionId, prompt);
+//    }
+
+    @PostMapping("/chat")
+    public String chat(@RequestBody ChatRequest chatRequest) {
+        return aiChat.chat(chatRequest.getSessionId(), chatRequest.getPrompt());
     }
 
 
+    @PostMapping("/streamChat")
+    public Flux<String> streamChat(@RequestBody ChatRequest chatRequest) {
+        return aiChat.streamChat(chatRequest.getSessionId(), chatRequest.getPrompt());
+    }
 
     @PostMapping("/insert")
     public String insertKnowledge(@RequestBody KnowledgeRequest knowledgeRequest) {

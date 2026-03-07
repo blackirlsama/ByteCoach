@@ -43,6 +43,9 @@ langchain4j:
       chat-model:
         model-name: qwen-max
         api-key: sk-e784271659ed44feb10e4dd7cb69762b
+      streaming-chat-model:
+        model-name: qwen-max
+        api-key: sk-e784271659ed44feb10e4dd7cb69762b
       embedding-model:
         model-name: text-embedding-v4
         api-key: sk-e784271659ed44feb10e4dd7cb69762b
@@ -53,4 +56,4 @@ bigmodel:
 
 
 rag:
-  docs-path: C:\Users\79924\Desktop\tianmu\ByteCoach\src\main\resources\docs
+  docs-path: C:\Users\Administrator\IdeaProjects\InfiniteChat-Agent\src\main\resources\docs
