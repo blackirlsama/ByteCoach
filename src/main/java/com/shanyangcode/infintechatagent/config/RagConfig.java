@@ -1,6 +1,8 @@
 package com.shanyangcode.infintechatagent.config;
 
 
+import com.shanyangcode.infintechatagent.Monitor.ObservabilityLogger;
+import com.shanyangcode.infintechatagent.Monitor.RagMetricsCollector;
 import com.shanyangcode.infintechatagent.rag.QwenRerankClient;
 import com.shanyangcode.infintechatagent.rag.QueryPreprocessor;
 import com.shanyangcode.infintechatagent.rag.RecursiveDocumentSplitter;
@@ -35,13 +37,19 @@ public class RagConfig {
     @Resource
     private QueryPreprocessor queryPreprocessor;
 
+    @Resource
+    private RagMetricsCollector ragMetricsCollector;
+
+    @Resource
+    private ObservabilityLogger observabilityLogger;
+
     @Value("${rag.docs-path}")
     private String docsPath;
 
     @Bean
     public EmbeddingStoreIngestor embeddingStoreIngestor() {
-        log.info("🔧 创建递归文档分割器 - maxChunkSize:500, chunkOverlap:150");
-        RecursiveDocumentSplitter splitter = new RecursiveDocumentSplitter(500, 150);
+        log.info("🔧 创建递归文档分割器 - maxChunkSize:800, chunkOverlap:200");
+        RecursiveDocumentSplitter splitter = new RecursiveDocumentSplitter(800, 200);
 
         return EmbeddingStoreIngestor.builder()
                 .documentSplitter(splitter)
@@ -63,17 +71,19 @@ public class RagConfig {
         ContentRetriever baseRetriever = EmbeddingStoreContentRetriever.builder()
                 .embeddingStore(embeddingStore)
                 .embeddingModel(embeddingModel)
-                .maxResults(20)
-                .minScore(0.65)
+                .maxResults(30)  // 增加召回数量
+                .minScore(0.55)  // 降低阈值，提高召回率
                 .build();
 
-        log.info("✅ [RAG配置] 粗排配置: maxResults=20, minScore=0.65");
+        log.info("✅ [RAG配置] 粗排配置: maxResults=30, minScore=0.55");
 
         ReRankingContentRetriever retriever = new ReRankingContentRetriever(
             baseRetriever,
             rerankClient,
             5,
-            queryPreprocessor
+            queryPreprocessor,
+            ragMetricsCollector,
+            observabilityLogger
         );
 
         log.info("✅ [RAG配置] Rerank精排配置: finalTopN=5, 查询预处理已启用");

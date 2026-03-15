@@ -13,9 +13,10 @@ import lombok.Data;
 @AllArgsConstructor
 public class MonitorContext implements Serializable {
 
+    private String requestId;
     private Long sessionId;
-
     private Long userId;
+    private Long startTime;
 
     @Serial
     private static final long serialVersionUID = 1L;
