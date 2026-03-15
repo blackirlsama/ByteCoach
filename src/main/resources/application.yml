@@ -46,16 +46,16 @@ langchain4j:
     dashscope:
       chat-model:
         model-name: qwen-max
-        api-key: sk-e784271659ed44feb10e4dd7cb69762b
+        api-key: sk-fb06297b508445e089a448fcd54875ca
       streaming-chat-model:
         model-name: qwen-max
-        api-key: sk-e784271659ed44feb10e4dd7cb69762b
+        api-key: sk-fb06297b508445e089a448fcd54875ca
       embedding-model:
         model-name: text-embedding-v4
-        api-key: sk-e784271659ed44feb10e4dd7cb69762b
+        api-key: sk-fb06297b508445e089a448fcd54875ca
       rerank-model:
         model-name: qwen3-rerank  # 修复：使用正确的文本重排序模型
-        api-key: sk-e784271659ed44feb10e4dd7cb69762b
+        api-key: sk-fb06297b508445e089a448fcd54875ca
         enabled: true
 
 # 关键新增：启用Rerank启动验证
@@ -64,7 +64,7 @@ rerank:
     enabled: true
 
 bigmodel:
-  api-key: 12cc950622344290bebffb9de8eff3d2.ttihjvInDu60Qm7P
+  api-key: bcfae528116e45e7af758acfc7a5f945.8iTgkbEl1V7FnVOT
 
 rag:
   docs-path: C:\Users\Administrator\IdeaProjects\InfiniteChat-Agent\src\main\resources\docs

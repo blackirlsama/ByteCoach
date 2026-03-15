@@ -39,7 +39,23 @@ public enum ErrorCode {
     SIGNAL_TYPE_ERROR(90000, "单聊消息必须指定接收者"),
     GROUP_TYPE_ERROR(90001, "群聊消息不需要指定接收者"),
     INVALID_TOKEN(90003, "无效token，请重新登录"),
-    USER_EMAIL_LIST_EMPTY(90004, "用户邮箱列表为空，请检查用户服务是否正常或没有用户注册");
+    USER_EMAIL_LIST_EMPTY(90004, "用户邮箱列表为空，请检查用户服务是否正常或没有用户注册"),
+
+    // ============ AI Agent 错误码（80xxx）============
+    AI_MODEL_ERROR(80000, "AI模型调用失败"),
+    AI_MODEL_TIMEOUT(80001, "AI模型响应超时"),
+    AI_MODEL_RATE_LIMIT(80002, "AI模型调用频率超限"),
+    MEMORY_COMPRESSION_ERROR(80010, "记忆压缩失败"),
+    MEMORY_STORE_ERROR(80011, "记忆存储失败"),
+    MEMORY_RETRIEVE_ERROR(80012, "记忆检索失败"),
+    RAG_EMBEDDING_ERROR(80020, "文档向量化失败"),
+    RAG_RETRIEVAL_ERROR(80021, "知识检索失败"),
+    RAG_RERANK_ERROR(80022, "重排序失败"),
+    RAG_DOCUMENT_LOAD_ERROR(80023, "文档加载失败"),
+    TOOL_EXECUTION_ERROR(80030, "工具执行失败"),
+    TOOL_NOT_FOUND(80031, "工具不存在"),
+    MCP_CONNECTION_ERROR(80040, "MCP服务连接失败"),
+    GUARDRAIL_BLOCKED(80050, "内容安全检查未通过");
 
     /**
      * 状态码
