@@ -27,11 +27,13 @@ server:
 # 关键修复：增加Rerank日志级别，便于排查问题
 logging:
   level:
-    dev.langchain4j.mcp: ERROR
-    com.shanyangcode.infintechatagent.rag: INFO  # Rerank相关包日志级别
-    com.shanyangcode.infintechatagent.memory: DEBUG # 新增：会话记忆压缩日志
-    org.springframework.web: WARN
-    com.fasterxml.jackson: WARN
+    root: OFF                  # 全局关闭所有日志
+    com.shanyangcode.infintechatagent: OFF
+    dev.langchain4j.mcp: OFF
+    com.shanyangcode.infintechatagent.rag: OFF
+    com.shanyangcode.infintechatagent.memory: OFF
+    org.springframework.web: OFF
+    com.fasterxml.jackson: OFF
 
 pgvector:
   database: dp
@@ -64,10 +66,10 @@ rerank:
     enabled: true
 
 bigmodel:
-  api-key: bcfae528116e45e7af758acfc7a5f945.8iTgkbEl1V7FnVOT
+  api-key: 91b0f598c5f2419198f6a6c148f53b7d.yY1lmckOT1dlJW1D
 
 rag:
-  docs-path: C:\Users\Administrator\IdeaProjects\InfiniteChat-Agent\src\main\resources\docs
+  docs-path: C:\Users\79924\Desktop\tianmu\ByteCoach\src\main\resources\docs
 
 management:
   endpoints:

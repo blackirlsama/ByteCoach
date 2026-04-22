@@ -23,8 +23,6 @@ public class RerankVerifier implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        System.out.println("\n=== Rerank功能验证 ===");
-
         String query = "Java多线程实现方式";
         List<String> docs = Arrays.asList(
                 "Java多线程可以通过继承Thread类、实现Runnable接口、实现Callable接口来实现",
@@ -36,20 +34,13 @@ public class RerankVerifier implements CommandLineRunner {
         List<Integer> result = rerankClient.rerank(query, docs, 2);
 
         if (result != null && !result.isEmpty()) {
-            System.out.println("✅ Rerank成功");
-            System.out.println("查询: " + query);
-            System.out.println("Top2结果:");
             for (int i = 0; i < result.size(); i++) {
                 int idx = result.get(i);
                 if (idx >= 0 && idx < docs.size()) { // 增加索引校验
-                    System.out.println((i + 1) + ". " + docs.get(idx));
                 } else {
-                    System.out.println((i + 1) + ". 无效索引: " + idx);
                 }
             }
         } else {
-            System.out.println("❌ Rerank失败（已降级为向量检索）");
         }
-        System.out.println("===================\n");
     }
 }

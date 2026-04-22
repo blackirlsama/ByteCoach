@@ -23,18 +23,12 @@ public class QwenRerankClientTest {
             "Java的synchronized关键字用于线程同步"
         );
 
-        System.out.println("\n=== 测试Rerank功能 ===");
-        System.out.println("查询: " + query);
-
         List<Integer> result = rerankClient.rerank(query, docs, 2);
 
         if (result != null && !result.isEmpty()) {
-            System.out.println("✅ Rerank成功，Top2结果:");
             for (int i = 0; i < result.size(); i++) {
-                System.out.println((i + 1) + ". " + docs.get(result.get(i)));
             }
         } else {
-            System.out.println("❌ Rerank失败");
         }
     }
 }

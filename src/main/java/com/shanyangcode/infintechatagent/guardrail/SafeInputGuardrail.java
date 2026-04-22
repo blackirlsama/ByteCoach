@@ -6,10 +6,10 @@ import dev.langchain4j.guardrail.InputGuardrailResult;
 
 import java.util.Set;
 
-public class SafeInputGuardrail implements InputGuardrail {
+/*public class SafeInputGuardrail implements InputGuardrail {
 
 
-    private static final Set<String> sensitiveWords = Set.of("死", "杀");
+    private static final Set<String> sensitiveWords = Set.of(" ", "");
 
     @Override
     public InputGuardrailResult validate(UserMessage userMessage) {
@@ -24,4 +24,4 @@ public class SafeInputGuardrail implements InputGuardrail {
 
         return success();
     }
-}
+}*/
